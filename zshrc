@@ -17,7 +17,17 @@ SAVEHIST=10000                        # number of histories within HISTFILE
 #function history-all { history -E 1 } # 全履歴の一覧を出力する
 
 # This will set the default prompt to the walters theme
-prompt walters
+prompt powerline
 
-alias zshrc='vim ~/.zshrc;source .zshrc'
-alias zshenv='vim ~/.zshenv;source .zshenv'
+alias zshrc='vim ~/.zshrc;source ~/.zshrc'
+alias zshenv='vim ~/.zshenv;source ~/.zshenv'
+alias rm='rmtrash'
+
+function knife_solo_check() {
+  if [ "$1" = 'solo' ] && [ "$2" = 'cook' ] && [ ! -d .chef ]; then
+    \echo -e '\033[0;31mERROR:\033[0;39m Not chef repositry directory.'
+  else
+    \knife $@
+  fi
+}
+alias knife=knife_solo_check

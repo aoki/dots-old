@@ -1,0 +1,19 @@
+[user]
+	name = Yoshiki Aoki
+	email = ringohub@gmail.com
+[core]
+	excludesfile = ~/.gitignore.default
+	editor = /usr/bin/vim
+[color]
+	ui = auto
+[alias]
+	st = status
+	l = log --oneline -5
+	ll = log --oneline
+	co = checkout
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
