@@ -10,6 +10,11 @@ if has('vim_starting')
   set nocompatible
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
+if has('clipboard')
+  set clipboard=unnamed,autoselect
+endif
+
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -38,12 +43,32 @@ let g:lightline = {
       \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
       \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
       \ }
+NeoBundle 'tpope/vim-surround'
+
+
+NeoBundleLazy 'elzr/vim-json', {
+      \'autoload': {'filetypes': [ 'json' ]}
+      \}
+NeoBundleLazy '5t111111/neat-json.vim', {
+      \'autoload': {'filetypes': [ 'json' ]}
+      \}
+NeoBundleLazy 'mattn/emmet-vim', {
+      \'autoload': {'filetypes': [ 'html' ]}
+      \}
+NeoBundleLazy 'derekwyatt/vim-scala', {
+      \'autoload': {'filetypes': [ 'scala' ]}
+      \}
+NeoBundleLazy 'jnwhiteh/vim-golang', {
+      \'autoload': {'filetypes': [ 'go' ]}
+      \}
+
 
 
 NeoBundleCheck
 
 set nobackup
 set noswapfile
+set noundofile
 
 set laststatus=2
 set smarttab
