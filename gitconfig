@@ -9,7 +9,8 @@
 [alias]
 	st = status
 	l = log --oneline -5
-	ll = log --oneline
+	ll = log --oneline -10
+	lll = log --oneline -15
 	co = checkout
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
