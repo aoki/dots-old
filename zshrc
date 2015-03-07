@@ -5,11 +5,12 @@ setopt autocd
 setopt autopushd
 unsetopt correct_all
 
-autoload -U compinit promptinit
-compinit
-promptinit
+autoload -U compinit && compinit
+autoload -U promptinit && promptinit
 
 # This will set the default prompt to the walters theme
+zstyle ':prompt:powerline:ps1' hide-user true
+zstyle ':prompt:powerline:ps1' hide-host true
 prompt powerline
 
 REPORTTIME=3
@@ -38,6 +39,9 @@ function peco_select_history() {
 zle -N peco_select_history
 bindkey '^r' peco_select_history
 
+idea () {
+  open -a /Applications/IntelliJ\ IDEA\ 14.app ${1}
+}
 
 export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/ringo/.boot2docker/certs/boot2docker-vm
