@@ -1,0 +1,7 @@
+function h() {
+  if [ $# -eq 0 ]; then
+    cat /etc/hosts
+  else
+    grep "${1}" /etc/hosts
+  fi
+}

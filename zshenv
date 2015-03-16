@@ -1,14 +1,21 @@
 export LANG=ja_JP.UTF-8
 export GOPATH=$HOME/.go
 export GOROOT=/usr/local/opt/go/libexec
+
 export DOCKER_HOST=tcp://192.168.59.103:2375
+export DOCKER_CERT_PATH=/Users/ringo/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+
+export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.7"`
 
 # for duplicate path
 typeset -U path cdpath fpath manpath sudo_path
 
 
-fpath=(~/.zsh/functions(N-/) $fpath)
-fpath=(~/.zsh/functions/*(N-/) $fpath)
+fpath=(
+  ~/.zsh/functions(N-/)
+  ~/.zsh/functions/*(N-/)
+  $fpath)
 
 path=(
   /usr/local/bin(N-/)
@@ -24,23 +31,3 @@ typeset -xT SUDO_PATH sudo_path
 sudo_path=(~/bin(N-/) $path)
 typeset -U sudo_path
 
-alias vimrc='vim ~/.vimrc'
-alias zshrc='vim ~/.zshrc;source ~/.zshrc'
-alias zshenv='vim ~/.zshenv;source ~/.zshenv'
-alias rm='rmtrash'
-alias b2d='boot2docker'
-alias dl='docker ps -lq'
-alias dstop='docker ps -q | xargs docker stop'
-alias dkill='docker ps -q | xargs docker rm'
-alias d='docker'
-alias ls='ls -GhF'
-alias ll='ls -ltrGhF'
-
-function knife_solo_check() {
-  if [ "$1" = 'solo' ] && [ "$2" = 'cook' ] && [ ! -d .chef ]; then
-    \echo -e '\033[0;31mERROR:\033[0;39m Not chef repositry directory.'
-  else
-    \knife $@
-  fi
-}
-alias knife=knife_solo_check

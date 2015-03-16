@@ -1,0 +1,7 @@
+function knife_solo_check() {
+  if [ "$1" = 'solo' ] && [ "$2" = 'cook' ] && [ ! -d .chef ]; then
+    echo -e '\033[0;31mERROR:\033[0;39m Not chef repositry directory.'
+  else
+    knife $@
+  fi
+}

@@ -20,29 +20,26 @@ HISTFILE=$HOME/.zsh-history           # histories-file
 HISTSIZE=1000                         # number of histories within session
 SAVEHIST=10000                        # number of histories within HISTFILE
 setopt extended_history               # 履歴ファイルに時刻を記録
-function history-all { history -E 1 } # 全履歴の一覧を出力する
-
-export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.7"`
+#function history-all { history -E 1 } # 全履歴の一覧を出力する
 
 setopt hist_ignore_all_dups
-function peco_select_history() {
-  local tac
-  if which tac > /dev/null; then
-    tac="tac"
-  else
-    tac="tail -r"
-  fi
-  BUFFER=$(fc -l -n 1 | eval $tac | sort |uniq | peco --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle clear-screen
-}
-zle -N peco_select_history
-bindkey '^r' peco_select_history
+autoload -U peco_select_history && zle -N peco_select_history && bindkey '^r' peco_select_history
 
-idea () {
-  open -a /Applications/IntelliJ\ IDEA\ 14.app ${1}
-}
+autoload -U idea
+autoload -U h
+autoload -U knife_solo_check && alias knife=knife_solo_check
+compdef ssh-host-color=ssh && alias ssh='~/bin/ssh-host-color' 
 
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/ringo/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
+[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source "$HOME/.pythonbrew/etc/bashrc"
+
+alias vimrc='vim ~/.vimrc'
+alias zshrc='vim ~/.zshrc;source ~/.zshrc'
+alias zshenv='vim ~/.zshenv;source ~/.zshenv'
+alias rm='rmtrash'
+alias b2d='boot2docker'
+alias dl='docker ps -lq'
+alias dstop='docker ps -q | xargs docker stop'
+alias dkill='docker ps -q | xargs docker rm'
+alias d='docker'
+alias ls='ls -GhF'
+alias ll='ls -ltrGhF'

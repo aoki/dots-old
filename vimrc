@@ -15,6 +15,14 @@ if has('clipboard')
   set clipboard=unnamed,autoselect
 endif
 
+if has('mouse')
+  set mouse=a
+endif
+
+if v:version >= 700
+  set cursorline      " show line guide
+endif
+
 call neobundle#rc(expand('~/.vim/bundle/'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -88,15 +96,6 @@ set nu
 set ttyfast
 
 autocmd! BufRead,BufNewFile FileType vim setl ts=2 sts=2 sw=2 et
-
-if has('clipboard')
-  set clipboard=unnamed,autoselect  " share a clipboard with a os
-endif
- 
-if v:version >= 700
-  set cursorline      " show line guide
-endif
-
  
 
 " for VimDiff
